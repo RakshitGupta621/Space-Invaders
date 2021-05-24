@@ -13,7 +13,7 @@ const collisionSound = new Audio('/music/collision.mp3');
 const victorySound = new Audio('/music/victory.mp3');
 const loseSound = new Audio('/music/lose.mp3');
 
-spaceSound.play();
+/**spaceSound.play(); */
 
 for (let i = 0; i < 225; i++) {
   const square = document.createElement('div') 
@@ -62,6 +62,7 @@ function moveShooter(e) {
 document.addEventListener('keydown', moveShooter)
 
 function moveInvaders() {
+  spaceSound.play();
   const leftEdge = alienInvaders[0] % width === 0
   const rightEdge = alienInvaders[alienInvaders.length - 1] % width === width -1    
   remove()
@@ -89,24 +90,25 @@ function moveInvaders() {
   draw()
 
   if (squares[currentShooterIndex].classList.contains('invader', 'shooter')) {
-    resultsDisplay.innerHTML = 'GAME OVER'  
-    spaceSound.pause();    
     loseSound.play();
+    spaceSound.pause();  
+    resultsDisplay.innerHTML = 'GAME OVER'   
     clearInterval(invadersId)
   }
 
   for (let i = 0; i < alienInvaders.length; i++) {
     if(alienInvaders[i] > (squares.length)) {
-      resultsDisplay.innerHTML = 'GAME OVER'
-      spaceSound.pause();
       loseSound.play();
+      spaceSound.pause();
+      resultsDisplay.innerHTML = 'GAME OVER'
+
       clearInterval(invadersId)
     }
   }
   if (aliensRemoved.length === alienInvaders.length) {
-    resultsDisplay.innerHTML = 'YOU WIN'
-    spaceSound.pause();
     victorySound.play();
+    spaceSound.pause();
+    resultsDisplay.innerHTML = 'YOU WIN'
     clearInterval(invadersId)
   }
 }
