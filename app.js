@@ -13,14 +13,12 @@ const collisionSound = new Audio('/music/collision.mp3');
 const victorySound = new Audio('/music/victory.mp3');
 const loseSound = new Audio('/music/lose.mp3');
 
-spaceSound.play();
-
 for (let i = 0; i < 225; i++) {
   const square = document.createElement('div') 
-  grid.appendChild(square) 
+  grid.appendChild(square)  
 }
 
-const squares = Array.from(document.querySelectorAll('.grid div')) 
+const squares = Array.from(document.querySelectorAll('.grid div'))
 
 const alienInvaders = [
   0,1,2,3,4,5,6,7,8,9,
@@ -48,6 +46,7 @@ squares[currentShooterIndex].classList.add('shooter')
 
 
 function moveShooter(e) {
+  spaceSound.play();
   squares[currentShooterIndex].classList.remove('shooter')
   switch(e.key) {
     case 'ArrowLeft': 
