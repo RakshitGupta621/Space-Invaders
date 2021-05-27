@@ -9,9 +9,14 @@ let aliensRemoved = []
 let results = 0
 
 const spaceSound = new Audio('/music/spaceMusic.mp3');
-const collisionSound = new Audio('/music/collision.mp3');
 const victorySound = new Audio('/music/victory.mp3');
 const loseSound = new Audio('/music/lose.mp3');
+
+window.onload = spaceSound.play();
+
+spaceSound.addEventListener("ended", () => {
+    spaceSound.play();
+})
 
 for (let i = 0; i < 225; i++) {
   const square = document.createElement('div') 
@@ -46,7 +51,6 @@ squares[currentShooterIndex].classList.add('shooter')
 
 
 function moveShooter(e) {
-  spaceSound.play();
   squares[currentShooterIndex].classList.remove('shooter')
   switch(e.key) {
     case 'ArrowLeft': 
@@ -112,7 +116,6 @@ function moveInvaders() {
 invadersId = setInterval(moveInvaders, 600)
 
 function shoot(e) {
-  collisionSound.play();
   let laserId
   let currentLaserIndex = currentShooterIndex
   function moveLaser() {
